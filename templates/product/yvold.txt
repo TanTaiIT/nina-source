@@ -1,0 +1,90 @@
+﻿// item  goc product
+<div class="product">
+            <a class="box-product text-decoration-none" href="<?=$product[$i][$sluglang]?>" title="<?=$product[$i]['ten'.$lang]?>">
+                <p class="pic-product scale-img"><img onerror="this.src='<?=THUMBS?>/270x270x2/assets/images/noimage.png';" src="<?=WATERMARK?>/product/270x270x1/<?=UPLOAD_PRODUCT_L.$product[$i]['photo']?>" alt="<?=$product[$i]['ten'.$lang]?>"/></p>
+                <h3 class="name-product text-split"><?=$product[$i]['ten'.$lang]?></h3>
+                <p class="price-product">
+                    <?php if($product[$i]['giakm']) { ?>
+                        <span class="price-new"><?=$func->format_money($product[$i]['giamoi'])?></span>
+                        <span class="price-old"><?=$func->format_money($product[$i]['gia'])?></span>
+                        <span class="price-per"><?='-'.$product[$i]['giakm'].'%'?></span>
+                    <?php } else { ?>
+                        <span class="price-new"><?=($product[$i]['gia']) ? $func->format_money($product[$i]['gia']) : lienhe?></span>
+                    <?php } ?>
+                </p>
+            </a>
+            <p class="cart-product w-clear">
+                <span class="cart-add addcart transition" data-id="<?=$product[$i]['id']?>" data-action="addnow">Thêm vào giỏ hàng</span>
+                <span class="cart-buy addcart transition" data-id="<?=$product[$i]['id']?>" data-action="buynow">Mua ngay</span>
+            </p>
+        </div>
+
+
+
+// san pham co danh muc ben trai
+<div class="sanpham_col_flex">
+	<div class="pro_left" id="danhmuc">
+		<?=$func->formenu_left('product',$type);?>
+	</div>
+	<div class="pro_right">
+		<div class="content-main css_flex_product">
+		    <?php if(isset($product) && count($product) > 0) {  
+
+		        echo $func->lay_sanpham($product);?>
+		        
+		    <?php  } else { ?>
+		        <div class="alert alert-warning" role="alert">
+		            <strong><?=khongtimthayketqua?></strong>
+		        </div>
+		    <?php } ?>
+		    <div class="clear"></div>
+		    <div class="pagination-home"><?=(isset($paging) && $paging != '') ? $paging : ''?></div>
+		</div>
+	</div>
+</div>
+
+// css
+/*san pham co danh muc ben trai*/
+.sanpham_col_flex{display: flex;flex-wrap: wrap;justify-content: space-between;}
+.sanpham_col_flex .pro_left{width: 24%;background: #fff;padding: 10px;}
+.sanpham_col_flex .pro_right{width: 73%;}
+.sanpham_col_flex .pro_right .product{    width: calc(33.3% - 20px);}
+div#danhmuc{	border-bottom:none;}
+div#danhmuc ul{	list-style:none;padding: 0;	margin: 0;}
+div#danhmuc ul li{position: relative;}
+div#danhmuc ul li:last-child{border:none;}
+div#danhmuc ul li a
+{
+	color: #454545;
+	font-family: 'mon-b';
+	text-decoration: none;
+	font-size: 14px;
+	transition: 0.4s;
+	display: block;
+	border-bottom: 1px solid #DDD;
+	padding: 9px 5px 9px 0px;
+}
+div#danhmuc ul li a h2{  font-size: 15px;}
+div#danhmuc ul li span{
+    position: absolute;
+    right: 6px;
+    top: 0;
+    display: block;
+    width: 14px;
+    height: 100%;
+    background: url(../images/muiten-menu.png) no-repeat center;
+    cursor: pointer;
+    max-height: 44px;
+}
+div#danhmuc ul li a:hover,div#danhmuc ul li a.active{color:red;transition:0.4s;}
+div#danhmuc ul li ul li a{ padding: 9px 5px 9px 26px;font-family: 'mon-r';}
+div#danhmuc ul li ul li span{ background: url(../images/muiten-menu.png) no-repeat;}
+div#danhmuc ul li ul li ul li span{}
+div#danhmuc ul li ul{display:none;}
+div#danhmuc ul li ul li ul li{}
+div#danhmuc ul li ul li ul li a{padding-left: 26px;color: #0193de;}
+div#danhmuc ul li ul li ul li ul li{}
+div#danhmuc ul li ul li ul li ul li a{padding-left: 40px;color: #000;font-family: 'mon-r';}
+div#danhmuc ul li ul li ul li ul li ul li{}
+div#danhmuc ul li ul li ul li ul li ul li a{color: #0193de;font-family: 'mon-r';}
+
